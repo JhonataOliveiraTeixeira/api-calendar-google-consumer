@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node", // Resolução de módulos como no Node.js
+    "outDir": "./dist", // Diretorio de saída para o JavaScript compilado
+    "strict": true,
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false
+  },
+  "include": [
+    "src/**/*"
+  ], // Certifique-se de incluir os arquivos TypeScript
+  "exclude": [
+    "node_modules"
+  ] // Evitar a compilação de node_modules
+}
