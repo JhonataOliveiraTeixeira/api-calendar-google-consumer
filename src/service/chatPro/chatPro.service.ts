@@ -8,14 +8,11 @@ export class chatProService {
     try {
       const phoneRegex = /\+55\s?(\d{2})\s?(\d{4,5})-?(\d{4})/;
 
-      // Regex para capturar o primeiro link
       const urlRegex = /https?:\/\/[^\s]+/;
 
-      // Pega a descrição do evento
       const description = event.description;
       console.log(description)
 
-      // Captura o telefone com a regex
       const clientPhone = description.match(phoneRegex);
       const inviteUrl = description.match(urlRegex);
 

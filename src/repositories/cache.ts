@@ -12,7 +12,7 @@ export class RedisRepository {
     private chatProService: chatProService
   ) { }
 
-  @Cron('45 * * * * *') // Executa a cada minuto
+  // @Cron('45 * * * * *') // Executa a cada minuto
   public async handleUpcomingEvents(): Promise<void> {
     const keys = await this.redis.keys('event:*');
 
