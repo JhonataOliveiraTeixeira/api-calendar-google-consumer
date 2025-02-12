@@ -200,7 +200,7 @@ export class ApiGoogleService {
             await this.redis.del(this.SYNC_TOKEN_KEY);
             return;
           } else {
-            throw error;
+            console.error(error);
           }
         }
       } while (pageToken);
