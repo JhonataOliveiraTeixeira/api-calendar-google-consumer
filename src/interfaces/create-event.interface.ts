@@ -6,4 +6,12 @@ export interface createEventInterface {
   end: {};
   recurrence?: [];
   attendees: [];
+  conferenceData?: {
+    createRequest: {
+      requestId: string;
+      conferenceSolutionKey: {
+        type: "hangoutsMeet";
+      };
+    };
+  };
 }

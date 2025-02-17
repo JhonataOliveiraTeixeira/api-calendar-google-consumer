@@ -135,27 +135,37 @@ export class ApiGoogleService {
     }
   }
 
-  public async createEvent(
-    calendarId: string,
-    eventData: createEventInterface,
-  ) {
+  public async createEvent(calendarId: string, eventData: createEventInterface) {
     try {
       const auth = this.authClient;
-      if (auth === null) {
+      if (!auth) {
         this.cancelSyncJob();
-        throw new Error('usuário desconectado');
+        throw new Error("Usuário desconectado");
       }
-      const calendar = google.calendar({ version: 'v3', auth });
+
+      const calendar = google.calendar({ version: "v3", auth });
+
+      eventData.conferenceData = {
+        createRequest: {
+          requestId: new Date().toISOString(),
+          conferenceSolutionKey: {
+            type: "hangoutsMeet",
+          },
+        },
+      };
 
       const result = await calendar.events.insert({
         calendarId: calendarId,
+        conferenceDataVersion: eventData.conferenceData ? 1 : undefined, 
         requestBody: eventData,
       });
 
-      console.log('Evento criado: %s', result.data.htmlLink);
+      console.log("Evento criado:", result.data.htmlLink);
+      console.log("Google Meet Link:", result.data.conferenceData?.entryPoints?.[0]?.uri);
+
       return result.data;
     } catch (err) {
-      console.error('Erro ao criar evento:', err);
+      console.error("Erro ao criar evento:", err);
       throw err;
     }
   }
